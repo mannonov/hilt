@@ -29,5 +29,4 @@ object DatabaseModule {
     fun provideLogDao(database: AppDatabase): LogDao {
         return database.logDao()
     }
-
 }

@@ -11,34 +11,24 @@ import javax.inject.Singleton
  * Data manager class that handles data manipulation between the database and the UI.
  */
 @Singleton
-class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao) {
+class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao):LoggerDataSource {
 
     private val executorService: ExecutorService = Executors.newFixedThreadPool(4)
     private val mainThreadHandler by lazy {
         Handler(Looper.getMainLooper())
     }
 
-    fun addLog(msg: String) {
-        executorService.execute {
-            logDao.insertAll(
-                Log(
-                    msg,
-                    System.currentTimeMillis()
-                )
-            )
-        }
+    override fun addLog(msg: String) {
+        TODO("Not yet implemented")
     }
 
-    fun getAllLogs(callback: (List<Log>) -> Unit) {
-        executorService.execute {
-            val logs = logDao.getAll()
-            mainThreadHandler.post { callback(logs) }
-        }
+    override fun getAllLogs(callback: (List<Log>) -> Unit) {
+        TODO("Not yet implemented")
     }
 
-    fun removeLogs() {
-        executorService.execute {
-            logDao.nukeTable()
-        }
+    override fun removeLogs() {
+        TODO("Not yet implemented")
     }
+
+
 }
